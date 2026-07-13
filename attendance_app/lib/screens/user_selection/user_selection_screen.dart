@@ -38,7 +38,14 @@ class UserSelectionScreen extends StatelessWidget {
                 width: double.infinity,
                 height: 55,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => const TeacherLoginScreen(),
+    ),
+  );
+},
                   child: const Text(
                     "Teacher (Host)",
                     style: TextStyle(fontSize: 18),
@@ -52,14 +59,7 @@ class UserSelectionScreen extends StatelessWidget {
                 width: double.infinity,
                 height: 55,
                 child: ElevatedButton(
-                  onPressed: () {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) => const TeacherLoginScreen(),
-    ),
-  );
-},
+                 onPressed: () {},
                   child: const Text(
                     "Student (Client)",
                     style: TextStyle(fontSize: 18),
