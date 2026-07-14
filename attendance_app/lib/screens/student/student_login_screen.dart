@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'student_home_screen.dart';
 
 class StudentLoginScreen extends StatelessWidget {
   const StudentLoginScreen({super.key});
@@ -39,7 +40,14 @@ class StudentLoginScreen extends StatelessWidget {
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => const StudentHomeScreen(),
+    ),
+  );
+},
                 child: const Text("Login"),
               ),
             ),
