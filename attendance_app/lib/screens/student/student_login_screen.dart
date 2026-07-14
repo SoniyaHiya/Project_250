@@ -1,0 +1,51 @@
+import 'package:flutter/material.dart';
+
+class StudentLoginScreen extends StatelessWidget {
+  const StudentLoginScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Student Login")),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.school, size: 90),
+
+            const SizedBox(height: 25),
+
+            TextField(
+              decoration: const InputDecoration(
+                labelText: "Student ID",
+                border: OutlineInputBorder(),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            TextField(
+              obscureText: true,
+              decoration: const InputDecoration(
+                labelText: "Password",
+                border: OutlineInputBorder(),
+              ),
+            ),
+
+            const SizedBox(height: 30),
+
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {},
+                child: const Text("Login"),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

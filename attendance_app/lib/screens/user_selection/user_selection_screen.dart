@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../teacher/teacher_login_screen.dart';
+import '../student/student_login_screen.dart';
 
 class UserSelectionScreen extends StatelessWidget {
   const UserSelectionScreen({super.key});
@@ -59,7 +60,14 @@ class UserSelectionScreen extends StatelessWidget {
                 width: double.infinity,
                 height: 55,
                 child: ElevatedButton(
-                 onPressed: () {},
+                 onPressed: () {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => const StudentLoginScreen(),
+    ),
+  );
+},
                   child: const Text(
                     "Student (Client)",
                     style: TextStyle(fontSize: 18),
