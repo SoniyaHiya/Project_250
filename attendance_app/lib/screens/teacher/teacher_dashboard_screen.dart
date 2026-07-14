@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'start_attendance_screen.dart';
+import '../../services/ble_service.dart';
+import 'package:flutter/material.dart';
 
 class TeacherDashboardScreen extends StatelessWidget {
   const TeacherDashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final bleService = BleService();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Teacher Dashboard"),
@@ -33,10 +37,20 @@ class TeacherDashboardScreen extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            ElevatedButton(
-              onPressed: () {},
-              child: const Text("Settings"),
-            ),
+           ElevatedButton(
+  onPressed: () async {
+    bool isOn = await bleService.isBluetoothOn();
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          isOn ? "Bluetooth is ON" : "Bluetooth is OFF",
+        ),
+      ),
+    );
+  },
+  child: const Text("Check Bluetooth"),
+),
           ],
         ),
       ),
