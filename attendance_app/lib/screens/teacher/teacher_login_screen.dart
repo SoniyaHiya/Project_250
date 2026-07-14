@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'teacher_dashboard_screen.dart';
 
 class TeacherLoginScreen extends StatelessWidget {
   const TeacherLoginScreen({super.key});
@@ -45,7 +46,14 @@ class TeacherLoginScreen extends StatelessWidget {
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
-                onPressed: () {},
+               onPressed: () {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => const TeacherDashboardScreen(),
+    ),
+  );
+},
                 child: const Text("Login"),
               ),
             ),
