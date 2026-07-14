@@ -14,15 +14,21 @@ class TeacherDashboardScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => const StartAttendanceScreen(),
+    ),
+  );
+},
               child: const Text("Start Attendance"),
             ),
 
             const SizedBox(height: 20),
 
             ElevatedButton(
-              onPressed: () {},
-              child: const Text("Attendance Report"),
+           onPressed: () {},              child: const Text("Attendance Report"),
             ),
 
             const SizedBox(height: 20),
