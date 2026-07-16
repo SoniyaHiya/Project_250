@@ -35,8 +35,9 @@ final TextEditingController roomController = TextEditingController();
 
             const SizedBox(height: 10),
 
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+      controller: courseController,
+              decoration: const InputDecoration(
                 hintText: "Enter Course Code",
                 border: OutlineInputBorder(),
               ),
@@ -54,8 +55,9 @@ final TextEditingController roomController = TextEditingController();
 
             const SizedBox(height: 10),
 
-            const TextField(
-              decoration: InputDecoration(
+           TextField(
+               controller: roomController,
+              decoration: const InputDecoration(
                 hintText: "Enter Room Number",
                 border: OutlineInputBorder(),
               ),
