@@ -10,7 +10,9 @@ class StartAttendanceScreen extends StatefulWidget {
 }
 
 class _StartAttendanceScreenState extends State<StartAttendanceScreen> {
+final TextEditingController courseController = TextEditingController();
 
+final TextEditingController roomController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
