@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../models/session_model.dart';
 import 'start_attendance_screen.dart';
 
 class StartAttendanceScreen extends StatefulWidget {
@@ -70,13 +71,16 @@ final TextEditingController roomController = TextEditingController();
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) => const StartAttendanceScreen(),
-    ),
-  );
-},
+                  SessionModel session = SessionModel(
+                    courseCode: courseController.text,
+                    roomNumber: roomController.text,
+                    startTime: DateTime.now(),
+                    isActive: true,
+                  );
+
+                  print("Course: ${session.courseCode}");
+                  print("Room: ${session.roomNumber}");
+                },
                 child: const Text("Start Session"),
               ),
             ),
