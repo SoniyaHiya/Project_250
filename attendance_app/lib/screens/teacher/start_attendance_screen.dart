@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'start_attendance_screen.dart';
 
-class StartAttendanceScreen extends StatelessWidget {
+class StartAttendanceScreen extends StatefulWidget {
   const StartAttendanceScreen({super.key});
+
+  @override
+  State<StartAttendanceScreen> createState() =>
+      _StartAttendanceScreenState();
+}
+
+class _StartAttendanceScreenState extends State<StartAttendanceScreen> {
 
   @override
   Widget build(BuildContext context) {
