@@ -71,13 +71,17 @@ final TextEditingController roomController = TextEditingController();
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  SessionModel session = SessionModel(
-                    courseCode: courseController.text,
-                    roomNumber: roomController.text,
-                    startTime: DateTime.now(),
-                    isActive: true,
-                  );
+                  String sessionId =
+    "${courseController.text}-${DateTime.now().millisecondsSinceEpoch}";
 
+SessionModel session = SessionModel(
+  sessionId: sessionId,
+  courseCode: courseController.text,
+  roomNumber: roomController.text,
+  startTime: DateTime.now(),
+  isActive: true,
+);
+                  print("Session ID: ${session.sessionId}");
                   print("Course: ${session.courseCode}");
                   print("Room: ${session.roomNumber}");
                 },
