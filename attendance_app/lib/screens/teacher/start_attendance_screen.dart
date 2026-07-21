@@ -18,6 +18,7 @@ class _StartAttendanceScreenState extends State<StartAttendanceScreen> {
   final SessionService sessionService = SessionService();
 
   bool bluetoothOn = false;
+  bool sessionStarted = false;
   final BleService bleService = BleService();
 
 @override
@@ -120,6 +121,9 @@ Future<void> checkBluetooth() async {
                   print("Session ID: ${session.sessionId}");
                   print("Course: ${session.courseCode}");
                   print("Room: ${session.roomNumber}");
+                  setState(() {
+  sessionStarted = true;
+});
 
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
@@ -130,6 +134,19 @@ Future<void> checkBluetooth() async {
                 child: const Text("Start Session"),
               ),
             ),
+            const SizedBox(height: 20),
+
+if (sessionStarted)
+  const Center(
+    child: Text(
+      "Attendance Session is Running",
+      style: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        color: Colors.green,
+      ),
+    ),
+  ),
           ],
         ),
       ),
