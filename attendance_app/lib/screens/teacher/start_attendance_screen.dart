@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../models/session_model.dart';
 import 'start_attendance_screen.dart';
+import '../../services/session_service.dart';
 
 class StartAttendanceScreen extends StatefulWidget {
   const StartAttendanceScreen({super.key});
@@ -12,8 +13,9 @@ class StartAttendanceScreen extends StatefulWidget {
 
 class _StartAttendanceScreenState extends State<StartAttendanceScreen> {
 final TextEditingController courseController = TextEditingController();
-
 final TextEditingController roomController = TextEditingController();
+
+final SessionService sessionService = SessionService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,12 +76,9 @@ final TextEditingController roomController = TextEditingController();
                   String sessionId =
     "${courseController.text}-${DateTime.now().millisecondsSinceEpoch}";
 
-SessionModel session = SessionModel(
-  sessionId: sessionId,
+SessionModel session = sessionService.createSession(
   courseCode: courseController.text,
   roomNumber: roomController.text,
-  startTime: DateTime.now(),
-  isActive: true,
 );
                   print("Session ID: ${session.sessionId}");
                   print("Course: ${session.courseCode}");

@@ -1,0 +1,19 @@
+import '../models/session_model.dart';
+
+class SessionService {
+  SessionModel createSession({
+    required String courseCode,
+    required String roomNumber,
+  }) {
+    String sessionId =
+        "$courseCode-${DateTime.now().millisecondsSinceEpoch}";
+
+    return SessionModel(
+      sessionId: sessionId,
+      courseCode: courseCode,
+      roomNumber: roomNumber,
+      startTime: DateTime.now(),
+      isActive: true,
+    );
+  }
+}
