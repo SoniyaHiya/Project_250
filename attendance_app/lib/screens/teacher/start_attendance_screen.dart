@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../models/session_model.dart';
-import 'start_attendance_screen.dart';
 import '../../services/session_service.dart';
 
 class StartAttendanceScreen extends StatefulWidget {
@@ -12,10 +11,13 @@ class StartAttendanceScreen extends StatefulWidget {
 }
 
 class _StartAttendanceScreenState extends State<StartAttendanceScreen> {
-final TextEditingController courseController = TextEditingController();
-final TextEditingController roomController = TextEditingController();
+  final TextEditingController courseController = TextEditingController();
+  final TextEditingController roomController = TextEditingController();
 
-final SessionService sessionService = SessionService();
+  final SessionService sessionService = SessionService();
+
+  bool bluetoothOn = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +29,6 @@ final SessionService sessionService = SessionService();
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             const Text(
               "Course",
               style: TextStyle(
@@ -39,7 +40,7 @@ final SessionService sessionService = SessionService();
             const SizedBox(height: 10),
 
             TextField(
-      controller: courseController,
+              controller: courseController,
               decoration: const InputDecoration(
                 hintText: "Enter Course Code",
                 border: OutlineInputBorder(),
@@ -58,8 +59,8 @@ final SessionService sessionService = SessionService();
 
             const SizedBox(height: 10),
 
-           TextField(
-               controller: roomController,
+            TextField(
+              controller: roomController,
               decoration: const InputDecoration(
                 hintText: "Enter Room Number",
                 border: OutlineInputBorder(),
@@ -68,21 +69,48 @@ final SessionService sessionService = SessionService();
 
             const SizedBox(height: 30),
 
+            Text(
+              bluetoothOn
+                  ? "Bluetooth Status: ON"
+                  : "Bluetooth Status: OFF",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: bluetoothOn ? Colors.green : Colors.red,
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
             SizedBox(
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  String sessionId =
-    "${courseController.text}-${DateTime.now().millisecondsSinceEpoch}";
+                  if (courseController.text.trim().isEmpty ||
+                      roomController.text.trim().isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Please enter Course and Room"),
+                      ),
+                    );
+                    return;
+                  }
 
-SessionModel session = sessionService.createSession(
-  courseCode: courseController.text,
-  roomNumber: roomController.text,
-);
+                  SessionModel session = sessionService.createSession(
+                    courseCode: courseController.text,
+                    roomNumber: roomController.text,
+                  );
+
                   print("Session ID: ${session.sessionId}");
                   print("Course: ${session.courseCode}");
                   print("Room: ${session.roomNumber}");
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text("Session Started Successfully"),
+                    ),
+                  );
                 },
                 child: const Text("Start Session"),
               ),
