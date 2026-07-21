@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../models/session_model.dart';
 import '../../services/session_service.dart';
+import '../../services/ble_service.dart';
 
 class StartAttendanceScreen extends StatefulWidget {
   const StartAttendanceScreen({super.key});
@@ -17,7 +18,21 @@ class _StartAttendanceScreenState extends State<StartAttendanceScreen> {
   final SessionService sessionService = SessionService();
 
   bool bluetoothOn = false;
+  final BleService bleService = BleService();
 
+@override
+void initState() {
+  super.initState();
+  checkBluetooth();
+}
+
+Future<void> checkBluetooth() async {
+  bool isOn = await bleService.isBluetoothOn();
+
+  setState(() {
+    bluetoothOn = isOn;
+  });
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
